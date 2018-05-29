@@ -31,11 +31,8 @@ export default class ResourceLoaderInspector {
    * Note that calcurated summary is not stored to given loader instance.<br />
    */
   public static snapshot(loader: Loader): Summary {
-    const summary = {
-      totalContentLength: 0,
-      resourceCount: 0,
-      contentLengthUnknown: 0
-    };
+    const defaultInspector = ResourceLoaderInspector.defaultInspectorProperty;
+    const summary = defaultInspector.summary;
 
     const resourceKeys = Object.keys(loader.resources);
 

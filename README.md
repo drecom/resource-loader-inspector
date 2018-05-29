@@ -18,6 +18,24 @@ and loader instance may be augmented `inspector.summary` property that contains 
 
 # Usage
 
+## Begin resource info retrieval
+
+Use _attach_ method.
+
+The second argument indicates use of HEAD request since resource-loader uses browser api such as Image and Video those don't have data size information on it's instance.
+
+Retrieved data is stored to augmented property `inspector.summary` of loader instance.
+
+```
+ResourceLoaderInspector.attach(loader);
+...
+console.log(loader.inspector.summary);
+```
+
+However, inspector does not care about `reset()` call of loader.
+
+Users may manually recalcurate resource info as described below.
+
 ## Retrieving current resource info
 
 Use _snapshot_ method.
@@ -33,24 +51,6 @@ Note that calcurated summary is not stored to given loader instance.
 ```
 const summary = ResourceLoaderInspector.snapshot(loader);
 ```
-
-## Retrieving resource info on time
-
-Use _observe_ method.
-
-The second argument indicates use of HEAD request since resource-loader uses browser api such as Image and Video those don't have data size information on it's instance.
-
-Retrieved data is stored to augmented property `inspector.summary` of loader instance.
-
-```
-ResourceLoaderInspector.observe(loader);
-...
-console.log(loader.inspector.summary);
-```
-
-However, observer does not care about `reset()` call from loader.
-
-Users may manually recalcurate resource info as described below.
 
 ## Recollect resource info
 
@@ -74,4 +74,4 @@ resource-loader-inspector uses HEAD request to retrieve data size for files not 
 
 And of course this gives an impact to the application performance, so this module should be used only under the development environment.
 
-Otherwise you can turn of the HEAD request feature by giving `false` to the second argument of `observe` and `recollect` method.
+Otherwise you can turn of the HEAD request feature by giving `false` to the second argument of `attach` and `recollect` method.

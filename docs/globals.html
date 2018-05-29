@@ -101,7 +101,7 @@
 					<div class="tsd-signature tsd-kind-icon">add<wbr>Xhr<wbr>Content<wbr>Length<span class="tsd-signature-symbol">:</span> <a href="interfaces/loadermiddleware.html" class="tsd-signature-type">LoaderMiddleware</a><span class="tsd-signature-symbol"> =&nbsp;&lt;LoaderMiddleware&gt;function addXhrContentLength(this:     Loader,resource: Resource,next:     Function): void {if (!this.xhr) {next();return;}const contentLength &#x3D; this.xhr.getResponseHeader(&#x27;Content-Length&#x27;);// getResponseHeader may return nullif (!contentLength) {next();return;}const contentLengthInt &#x3D; parseInt(contentLength, 10);if (resource.inspector) {if (resource.inspector.alreadyLoaded) {next();return;}resource.inspector.contentLength &#x3D; contentLengthInt;}if (this.inspector) {this.inspector.summary.totalContentLength +&#x3D; contentLengthInt;}next();}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in middleware/add_xhr_content_length.ts:10</li>
+							<li>Defined in <a href="https://github.com/drecom/resource-loader-inspector/blob/develop/src/middleware/add_xhr_content_length.ts#L10">middleware/add_xhr_content_length.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -118,7 +118,7 @@
 					<div class="tsd-signature tsd-kind-icon">increment<wbr>Resource<wbr>Count<span class="tsd-signature-symbol">:</span> <a href="interfaces/loadermiddleware.html" class="tsd-signature-type">LoaderMiddleware</a><span class="tsd-signature-symbol"> =&nbsp;&lt;LoaderMiddleware&gt;function incrementResourceCount(this:     Loader,resource: Resource,next:     Function): void {if (resource.inspector &amp;&amp; resource.inspector.alreadyLoaded) {next();return;}if (this.inspector) {this.inspector.summary.resourceCount++;}next();}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in middleware/increment_resource_count.ts:8</li>
+							<li>Defined in <a href="https://github.com/drecom/resource-loader-inspector/blob/develop/src/middleware/increment_resource_count.ts#L8">middleware/increment_resource_count.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -133,7 +133,7 @@
 					<div class="tsd-signature tsd-kind-icon">mark<wbr>Loaded<span class="tsd-signature-symbol">:</span> <a href="interfaces/loadermiddleware.html" class="tsd-signature-type">LoaderMiddleware</a><span class="tsd-signature-symbol"> =&nbsp;&lt;LoaderMiddleware&gt;function markLoaded(this:     Loader,resource: Resource,next:     Function): void {if (resource.inspector) {resource.inspector.alreadyLoaded &#x3D; !!resource.data;}next();}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in middleware/mark_loaded.ts:10</li>
+							<li>Defined in <a href="https://github.com/drecom/resource-loader-inspector/blob/develop/src/middleware/mark_loaded.ts#L10">middleware/mark_loaded.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -150,7 +150,7 @@
 					<div class="tsd-signature tsd-kind-icon">request<wbr>Resource<wbr>Size<span class="tsd-signature-symbol">:</span> <a href="interfaces/loadermiddleware.html" class="tsd-signature-type">LoaderMiddleware</a><span class="tsd-signature-symbol"> =&nbsp;&lt;LoaderMiddleware&gt;function requestResourceSize(this:     Loader,resource: Resource,next:     Function): void {if (resource.inspector &amp;&amp; resource.inspector.alreadyLoaded) {next();return;}if (this.xhr) {return;}const xhr &#x3D; new XMLHttpRequest();xhr.open(&#x27;HEAD&#x27;, resource.url, true);xhr.addEventListener(&#x27;load&#x27;,() &#x3D;&gt; {const contentLength &#x3D; xhr.getResponseHeader(&#x27;Content-Length&#x27;);// getResponseHeader may return nullif (!contentLength) {return;}const contentLengthInt &#x3D; parseInt(contentLength, 10);if (resource.inspector) {resource.inspector.contentLength &#x3D; contentLengthInt;}if (this.inspector) {this.inspector.summary.totalContentLength +&#x3D; contentLengthInt;}},false);xhr.send();// no need to wait xhr procedurenext();}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in middleware/request_resource_size.ts:8</li>
+							<li>Defined in <a href="https://github.com/drecom/resource-loader-inspector/blob/develop/src/middleware/request_resource_size.ts#L8">middleware/request_resource_size.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -165,7 +165,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Inspector<wbr>Property<span class="tsd-signature-symbol">:</span> <a href="interfaces/loadermiddleware.html" class="tsd-signature-type">LoaderMiddleware</a><span class="tsd-signature-symbol"> =&nbsp;&lt;LoaderMiddleware&gt;function setInspectorProperty(this:     Loader,resource: Resource,next:     Function): void {resource.inspector &#x3D; {contentLength: 0,alreadyLoaded: false};next();}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in middleware/set_inspector_property.ts:8</li>
+							<li>Defined in <a href="https://github.com/drecom/resource-loader-inspector/blob/develop/src/middleware/set_inspector_property.ts#L8">middleware/set_inspector_property.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
