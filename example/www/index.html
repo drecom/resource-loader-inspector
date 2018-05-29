@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style tepy='text/css'>
+    h1 { font-size: 16pt; }
+    p { font-size: 9pt; }
+    #debug-div { font-size: 9pt; }
+    .button { width: 120px; }
+  </style>
+</head>
+<body>
+  <h1>resource-loader-inspector</h1>
+  <p>
+    <input class='button' type='button' value='load asset' onclick='loadAsset()' />
+    Load all assets with <i>resource-loader</i>.
+  </p>
+  <p>
+    <input class='button' type='button' value='current summary' onclick='getCurrentSummary()' />
+    Show current <i>inspectorSummary</i>.
+  </p>
+  <p>
+    <input class='button' type='button' value='snapshot' onclick='getSnapShot()' />
+    Get snapshot of <i>inspectorSummary</i>, it is not stored to <i>Loader</i> instance.
+  </p>
+  <p>
+    <input class='button' type='button' value='recollect' onclick='recollectSummary()' />
+    Recollect <i>inspectorSummary</i>, it is stored to <i>Loader</i> instance.
+  </p>
+  <p>
+    <input class='button' type='button' value='reset loader' onclick='resetLoader()' />
+    Resets <i>resources</i> property of <i>Loader</i> instance.
+  </p>
+  <div id='debug-div'></div>
+
+  <script type='text/javascript' src='/assets/resource-loader.js'></script>
+  <script type='text/javascript' src='/assets/resource-loader-inspector.js'></script>
+  <script type='text/javascript'>
+    var DEBUG_DIV = document.getElementById('debug-div');
+    var ResourceLoaderInspector = window["resource-loader-inspector"].default;
+    var ASSETS = [
+      '/assets/BGM.mp3',
+      '/assets/computer_cloud_storage.png',
+      '/assets/hellowworld.bin',
+      '/assets/LICENSE.md',
+      '/assets/Maneki-Neko - 4899.mp4'
+    ];
+
+    var LOADER = new Loader();
+    ResourceLoaderInspector.observe(LOADER);
+
+    function _createLoadAssetList() {
+      var assetList = [];
+      var resources = LOADER.resources;
+
+      for (var i = 0; i < ASSETS.length; i++) {
+        var name = ASSETS[i];
+
+        if (resources.hasOwnProperty(name)) {
+          continue;
+        }
+
+        var assetEntity = {};
+        assetEntity.name = name;
+        assetEntity.url  = name;
+        assetList.push(assetEntity);
+      }
+
+      return assetList;
+    }
+
+    function _drawSummary(action, summary) {
+      DEBUG_DIV.innerHTML = action +  '<br />' +
+        'totalContentLength: ' + summary.totalContentLength + '<br />' +
+        'resourceCount: ' + summary.resourceCount + '<br />' +
+        'contentLengthUnknown: ' + summary.contentLengthUnknown;
+    }
+
+    function loadAsset() {
+      LOADER.add(_createLoadAssetList()).load(function() {
+        _drawSummary('loadAsset', LOADER.inspector.summary);
+      });
+    }
+
+    function getCurrentSummary() {
+      _drawSummary('getCurrentSummary', LOADER.inspector.summary);
+    }
+
+    function getSnapShot() {
+      var summary = ResourceLoaderInspector.snapshot(LOADER);
+      _drawSummary('getSnapShot', summary);
+    }
+
+    function recollectSummary() {
+      ResourceLoaderInspector.recollect(LOADER);
+      _drawSummary('recollectSummary', LOADER.inspector.summary);
+    }
+
+    function resetLoader() {
+      LOADER.reset();
+      _drawSummary('resetLoader (should not recalcurate automatically)', LOADER.inspector.summary);
+    }
+
+
+  </script>
+</body>
+</html>
