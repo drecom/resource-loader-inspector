@@ -1,7 +1,7 @@
 {
   "name": "resource-loader-inspector",
   "version": "0.0.1",
-  "description": "",
+  "description": "inspector for resource-loader",
   "main": "lib/resource-loader-inspector.min.js",
   "typings": "lib/lib-ts/index.d.ts",
   "repository": {
